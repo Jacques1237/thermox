@@ -1,4 +1,6 @@
 (function () {
+  const ORDERING_ENABLED = false;
+
   function setYear() {
     var yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -119,8 +121,8 @@
       raw = localStorage.getItem('thermoxLastOrder');
     } catch (e) {}
 
-    if (!raw) {
-      container.innerHTML = '<p>Order data not found. This is a demo confirmation screen—wire it to your payment gateway to see live details.</p>';
+    if (!raw || !ORDERING_ENABLED) {
+      container.innerHTML = '<p>This is a demo confirmation view. When ThermoX ordering goes live, your real order details will appear here.</p>';
       if (orderIdEl) {
         orderIdEl.textContent = 'Order ID: ' + generateOrderId();
       }

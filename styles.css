@@ -93,6 +93,7 @@ a {
   justify-content: space-between;
   gap: 1.25rem;
   padding: 0.9rem 0;
+  flex-wrap: wrap;
 }
 
 .tx-logo {
@@ -128,10 +129,11 @@ a {
 /* nav gets more tactical styling */
 .tx-nav {
   display: flex;
-  gap: 1.75rem;
+  gap: 1.4rem;
   font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
+  flex-wrap: wrap;
 }
 
 .tx-nav a {
@@ -180,6 +182,7 @@ a {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  white-space: nowrap;
 }
 
 .tx-cta:hover {
@@ -305,6 +308,13 @@ a {
 
 .tx-btn-ghost:hover {
   border-color: var(--accent-strong);
+}
+
+.tx-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  pointer-events: none;
 }
 
 .tx-hero-meta {
@@ -995,7 +1005,7 @@ a {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .tx-chart-frame::before,
@@ -1068,6 +1078,14 @@ a {
   .tx-gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .tx-header-inner {
+    justify-content: center;
+  }
+
+  .tx-nav {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1089,6 +1107,16 @@ a {
 
   .tx-gallery-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tx-chart-frame {
+    max-width: 100%;
+    padding: 0.08rem;
+    margin-top: 1.2rem;
+  }
+
+  .tx-chart-img {
+    max-height: 260px;
   }
 }
 
@@ -1380,3 +1408,35 @@ a {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Generic fullscreen image lightbox for charts/images */
+.tx-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.tx-lightbox-overlay img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.tx-lightbox-overlay::after {
+  content: "Tap anywhere to close";
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(229, 231, 235, 0.7);
+}
+

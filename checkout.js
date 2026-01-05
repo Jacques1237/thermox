@@ -1,4 +1,5 @@
 (function () {
+  const ORDERING_ENABLED = false;
   const STORAGE_KEY = 'thermox_cart';
   const PRICE_PER_UNIT = 800; // R800
 
@@ -90,6 +91,11 @@
     const payButton = document.getElementById('checkout-pay-btn');
     if (payButton) {
       payButton.addEventListener('click', () => {
+        if (!ORDERING_ENABLED) {
+          alert('Online ordering is not live yet. This checkout is a demo only. Email thermox.service@gmail.com to request a ThermoX unit.');
+          return;
+        }
+
         const cart = loadCart();
 
         if (!Array.isArray(cart) || cart.length === 0) {

@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Simple client-side cart ---
   const STORAGE_KEY = "thermox_cart";
   const MAX_QTY = 5;
+  const ORDERING_ENABLED = false;
   let cart = [];
 
   function loadCart() {
@@ -65,6 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function addToCart(item) {
+    if (!ORDERING_ENABLED) {
+      showToast("Online ordering is coming soon. Email thermox.service@gmail.com to reserve.");
+      return;
+    }
     const existing = cart.find((entry) => entry.color === item.color);
     if (existing) {
       existing.qty = Math.min(MAX_QTY, existing.qty + item.qty);
@@ -76,6 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function openCartDropdown(anchor) {
+    if (!ORDERING_ENABLED) {
+      showToast("Online ordering is paused. Cart will go live soon.");
+      return;
+    }
     // Close any existing dropdown
     const existing = document.querySelector(".tx-cart-dropdown");
     if (existing) {
@@ -209,6 +218,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+      if (!ORDERING_ENABLED) {
+        showToast("Ordering is paused. Email thermox.service@gmail.com to get on the deployment list.");
+        return;
+      }
       const data = new FormData(form);
       const color = (data.get("color") || "Thermal Orange").toString();
       let qty = parseInt((data.get("qty") || "1").toString(), 10);
@@ -243,6 +256,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const mode = pill.dataset.mode || "range";
         modeDescription.textContent = modeCopy[mode] || modeCopy.range;
       });
+    });
+  }
+
+  // Cooling curves chart: tap/click to view fullscreen
+  const chartImg = document.querySelector(".tx-chart-img");
+  if (chartImg) {
+    chartImg.style.cursor = "zoom-in";
+    chartImg.addEventListener("click", () => {
+      const overlay = document.createElement("div");
+      overlay.className = "tx-lightbox-overlay";
+
+      const fullImg = document.createElement("img");
+      fullImg.src = chartImg.currentSrc || chartImg.src;
+      fullImg.alt = chartImg.alt || "ThermoX cooling curves chart";
+
+      overlay.appendChild(fullImg);
+      document.body.appendChild(overlay);
+
+      const close = () => {
+        overlay.removeEventListener("click", close);
+        overlay.remove();
+      };
+
+      overlay.addEventListener("click", close);
     });
   }
 });
