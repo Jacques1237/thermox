@@ -1090,7 +1090,16 @@ a {
 
 @media (max-width: 640px) {
   .tx-header-inner {
-    padding: 0.7rem 0;
+    padding: 0.9rem 0; /* slightly taller header on mobile */
+  }
+
+  /* Ensure nav items have comfortable tap height in the mobile dropdown */
+  .tx-nav.tx-nav-open a {
+    padding: 0.5rem 0; /* add vertical padding per link */
+  }
+
+  .tx-nav {
+    row-gap: 0.4rem; /* extra space between rows if they wrap */
   }
 
   .tx-container {
@@ -1109,14 +1118,9 @@ a {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .tx-chart-frame {
-    max-width: 100%;
-    padding: 0.08rem;
-    margin-top: 1.2rem;
-  }
-
-  .tx-chart-img {
-    max-height: 260px;
+  /* Hide the desktop-style CTA in the header on small screens */
+  .tx-header .tx-cta {
+    display: none;
   }
 }
 
@@ -1440,3 +1444,56 @@ a {
   color: rgba(229, 231, 235, 0.7);
 }
 
+/* ...existing header/nav styles... */
+.tx-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.tx-nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--muted);
+  margin: 3px 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.tx-nav-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(2px) rotate(45deg);
+}
+
+.tx-nav-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-2px) rotate(-45deg);
+}
+
+@media (max-width: 960px) {
+  .tx-nav-toggle {
+    display: inline-flex;
+  }
+
+  .tx-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.98);
+    padding: 0.75rem 1.5rem 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.9);
+  }
+
+  .tx-nav.tx-nav-open {
+    display: flex;
+  }
+
+  .tx-header-inner {
+    position: relative;
+  }
+}

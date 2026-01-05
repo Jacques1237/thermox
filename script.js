@@ -282,4 +282,22 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.addEventListener("click", close);
     });
   }
+
+  // Mobile navigation toggle
+  const navToggle = document.querySelector('.tx-nav-toggle');
+  const nav = document.querySelector('.tx-nav[data-nav]');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('tx-nav-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Optional: close nav when a link is clicked (on mobile)
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('tx-nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 });
