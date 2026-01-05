@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermoX // Mission Confirmed</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="tx-checkout-body tx-page-shell">
+  <div class="tx-page-inner">
+    <header class="tx-header">
+      <div class="tx-container tx-header-inner">
+        <div class="tx-logo">Thermo<span>X</span></div>
+        <nav class="tx-nav">
+          <a href="index.html#top">Back to Product</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="tx-checkout-main tx-container">
+      <section class="tx-section tx-checkout-section">
+        <header class="tx-section-header tx-checkout-header-friendly tx-success-header">
+          <div class="tx-success-badge">CLEARED</div>
+          <h1>Mission Confirmed</h1>
+          <p>Your ThermoX unit is locked in and getting ready to deploy to your firing line.</p>
+          <p class="tx-checkout-subcopy">
+            We’ve logged your order details below. When you hook up a real payment
+            provider, this screen becomes your live confirmation.
+          </p>
+          <p id="order-id-display" class="tx-order-id"></p>
+        </header>
+
+        <div id="order-summary" class="tx-checkout-cart"></div>
+
+        <div class="tx-checkout-actions tx-checkout-actions-spaced tx-success-actions">
+          <button type="button" id="download-invoice-btn" class="tx-btn-ghost">Download Invoice</button>
+          <a href="index.html#top" class="tx-btn-ghost">⟵ Return to ThermoX</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="tx-footer">
+      <div class="tx-container tx-footer-inner">
+        <div class="tx-logo">Thermo<span>X</span></div>
+        <div class="tx-footer-meta">
+          <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
+          <span>Contact: <a href="mailto:support@example.com" class="tx-footer-link">support@example.com</a></span>
+          <span>
+            <a href="terms.html" class="tx-footer-link">Terms &amp; Conditions</a>
+            ·
+            <a href="privacy.html" class="tx-footer-link">Privacy Policy</a>
+            ·
+            <a href="returns-shipping.html" class="tx-footer-link">Returns &amp; Shipping</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="success.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermoX // Returns &amp; Shipping</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="tx-header">
+    <div class="tx-container tx-header-inner">
+      <div class="tx-logo">Thermo<span>X</span></div>
+      <nav class="tx-nav">
+        <a href="index.html#top">Back to Product</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tx-container" style="padding-top:2.5rem;padding-bottom:3rem;max-width:800px;">
+    <section class="tx-section" style="padding-top:0;">
+      <header class="tx-section-header" style="margin-bottom:1.5rem;">
+        <h2>Returns &amp; Shipping</h2>
+        <p>Example policies for how ThermoX orders could be shipped and returned.</p>
+      </header>
+      <article class="tx-legal-copy">
+        <h3>1. Shipping (Demo)</h3>
+        <p>
+          In this demo, shipping costs and delivery estimates are examples only. The checkout mentions free shipping
+          above a certain order value, but no actual logistics or carriers are integrated yet.
+        </p>
+
+        <h3>2. Example Live Shipping Policy</h3>
+        <ul>
+          <li>Orders dispatched within 2–3 business days once payment clears.</li>
+          <li>Free shipping on qualifying orders above a specified amount.</li>
+          <li>Tracking details provided by email once the order ships.</li>
+        </ul>
+
+        <h3>3. Returns (Demo)</h3>
+        <p>
+          The ThermoX product page references a 30‑day guarantee and a 1‑year limited warranty as example terms. In this
+          demo, no real returns are processed.
+        </p>
+
+        <h3>4. Example Live Returns &amp; Warranty Policy</h3>
+        <ul>
+          <li>30‑day return window from date of delivery for unused or lightly used units.</li>
+          <li>1‑year limited warranty against defects in materials and workmanship.</li>
+          <li>Customer responsible for return shipping unless the product is DOA or mis‑shipped.</li>
+        </ul>
+
+        <h3>5. Contact For Support</h3>
+        <p>
+          For questions about how a real ThermoX shipping and returns process would work, contact
+          <a href="mailto:support@example.com" class="tx-footer-link">support@example.com</a>.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="tx-footer">
+    <div class="tx-container tx-footer-inner">
+      <div class="tx-logo">Thermo<span>X</span></div>
+      <div class="tx-footer-meta">
+        <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
+        <span>Contact: <a href="mailto:support@example.com" class="tx-footer-link">support@example.com</a></span>
+        <span>
+          <a href="terms.html" class="tx-footer-link">Terms &amp; Conditions</a>
+          ·
+          <a href="privacy.html" class="tx-footer-link">Privacy Policy</a>
+          ·
+          <a href="returns-shipping.html" class="tx-footer-link">Returns &amp; Shipping</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

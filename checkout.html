@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermoX Checkout</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="tx-checkout-body tx-page-shell">
+  <div class="tx-page-inner">
+    <header class="tx-header">
+      <div class="tx-container tx-header-inner">
+        <div class="tx-logo">Thermo<span>X</span></div>
+        <nav class="tx-nav">
+          <a href="index.html#top">Back to Product</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="tx-checkout-main tx-container">
+      <section class="tx-section tx-checkout-section">
+        <header class="tx-section-header tx-checkout-header-friendly">
+          <h1>You're Almost Range‑Ready</h1>
+          <p>Review your ThermoX loadout, add your details, then confirm your order when you're happy with everything.</p>
+          <p class="tx-checkout-subcopy">Demo environment: no real payment or shipment occurs yet. This flow is for testing only.</p>
+        </header>
+
+        <div id="checkout-cart" class="tx-checkout-cart"></div>
+
+        <section class="tx-checkout-details" aria-label="Customer details">
+          <h2 class="tx-checkout-details-title">Shooter & Shipping Details</h2>
+          <div class="tx-checkout-details-grid">
+            <label class="tx-field tx-field-inline">
+              <span>Full Name</span>
+              <input type="text" id="checkout-name" autocomplete="name" placeholder="e.g. J. Botha" />
+            </label>
+            <label class="tx-field tx-field-inline">
+              <span>Email</span>
+              <input type="email" id="checkout-email" autocomplete="email" placeholder="you@example.com" />
+            </label>
+            <label class="tx-field tx-field-inline">
+              <span>Phone</span>
+              <input type="tel" id="checkout-phone" autocomplete="tel" placeholder="Mobile or range contact" />
+            </label>
+            <label class="tx-field tx-field-inline tx-field-wide">
+              <span>Shipping Address</span>
+              <input type="text" id="checkout-address" autocomplete="shipping street-address" placeholder="Street, unit, range name" />
+            </label>
+            <label class="tx-field tx-field-inline">
+              <span>City / Town</span>
+              <input type="text" id="checkout-city" autocomplete="address-level2" placeholder="e.g. Pretoria" />
+            </label>
+            <label class="tx-field tx-field-inline">
+              <span>Region</span>
+              <input type="text" id="checkout-region" autocomplete="address-level1" placeholder="Province / State" />
+            </label>
+          </div>
+          <p class="tx-checkout-note-small">For this demo, details stay in your browser only so you can see what a full order record would look like.</p>
+        </section>
+
+        <section class="tx-checkout-meta-section" aria-label="Pricing and terms">
+          <p class="tx-checkout-note">Pricing demo: R800 per unit. Example free shipping above R1000, local VAT assumed included.</p>
+          <label class="tx-checkout-consent">
+            <input type="checkbox" id="checkout-consent" />
+            <span>I understand this is a demo checkout and agree to the example Terms &amp; Privacy placeholders.</span>
+          </label>
+        </section>
+
+        <div class="tx-checkout-actions tx-checkout-actions-spaced">
+          <a href="index.html#top" class="tx-btn-ghost">⟵ Continue Shopping</a>
+          <button type="button" class="tx-btn-primary" id="checkout-pay-btn">Complete Purchase</button>
+        </div>
+        <p class="tx-secure tx-checkout-note">Secure checkout placeholder — plug your payment gateway in here when you go live.</p>
+      </section>
+    </main>
+
+    <footer class="tx-footer">
+      <div class="tx-container tx-footer-inner">
+        <div class="tx-logo">Thermo<span>X</span></div>
+        <div class="tx-footer-meta">
+          <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
+          <span>Contact: <a href="mailto:support@example.com" class="tx-footer-link">support@example.com</a></span>
+          <span>
+            <a href="terms.html" class="tx-footer-link">Terms &amp; Conditions</a>
+            ·
+            <a href="privacy.html" class="tx-footer-link">Privacy Policy</a>
+            ·
+            <a href="returns-shipping.html" class="tx-footer-link">Returns &amp; Shipping</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="checkout.js"></script>
+</body>
+</html>

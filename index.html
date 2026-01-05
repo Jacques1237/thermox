@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermoX Barrel Cooler | Tactical Rifle Barrel Cooling System</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="tx-header">
+    <div class="tx-container tx-header-inner">
+      <div class="tx-logo">Thermo<span>X</span></div>
+      <nav class="tx-nav">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#specs">Specs</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#promo-video">Video</a>
+      </nav>
+      <a href="#buy" class="tx-cta">Buy Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="tx-hero" id="top">
+      <div class="tx-hero-overlay"></div>
+      <div class="tx-container tx-hero-content">
+        <div class="tx-hero-text">
+          <h1>Keep Your Barrel <span>Cold</span>. Stay On Target.</h1>
+          <p class="tx-hero-subtitle">
+            ThermoX is a compact, field-ready rifle barrel cooler engineered for high-volume shooters,
+            precision competitors, and tactical professionals who can’t afford heat-induced flyers.
+          </p>
+          <ul class="tx-hero-bullets">
+            <li>Rapid barrel cooldown between strings</li>
+            <li>Designed for AR platforms & precision bolt guns</li>
+            <li>Runs silent, ruggedized for the range</li>
+          </ul>
+          <div class="tx-hero-actions">
+            <a href="#buy" class="tx-btn-primary">Lock In Your ThermoX</a>
+            <a href="#how-it-works" class="tx-btn-ghost">See It In Action</a>
+          </div>
+          <div class="tx-mode-strip" aria-label="Use case modes">
+            <span class="tx-mode-pill active" data-mode="range">Range</span>
+            <span class="tx-mode-pill" data-mode="match">Match</span>
+<!--            <span class="tx-mode-pill" data-mode="instructor">Instructor</span>-->
+          </div>
+          <p class="tx-mode-description" id="mode-description">
+            Range mode: perfect for zeroing days and casual sessions where you don’t want to babysit a hot barrel.
+          </p>
+          <div class="tx-hero-meta">
+            <span class="meta-item">Ships from Pretoria</span>
+            <span class="meta-item">30-Day Back Guarantee</span>
+            <span class="meta-item">Free Shipping on Orders R1500+</span>
+          </div>
+        </div>
+        <div class="tx-hero-card" aria-label="Product quick purchase">
+          <div class="tx-hero-card-inner">
+            <div class="tx-hero-card-header">
+              <span class="tx-hero-icon tx-hero-icon-crosshair" aria-hidden="true">
+                <svg viewBox="0 0 32 32" class="tx-icon-svg">
+                  <circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.4" />
+                  <line x1="16" y1="4" x2="16" y2="9" stroke="currentColor" stroke-width="1.4" />
+                  <line x1="16" y1="23" x2="16" y2="28" stroke="currentColor" stroke-width="1.4" />
+                  <line x1="4" y1="16" x2="9" y2="16" stroke="currentColor" stroke-width="1.4" />
+                  <line x1="23" y1="16" x2="28" y2="16" stroke="currentColor" stroke-width="1.4" />
+                </svg>
+              </span>
+              <h2>ThermoX Barrel Cooler</h2>
+            </div>
+            <p class="tx-price"><span class="tx-price-main">R1250</span> <span class="tx-price-sub">ZAR</span></p>
+            <p class="tx-stock">In Stock · Ready to ship</p>
+            <ul class="tx-mini-features">
+              <li>
+                <span class="tx-inline-icon tx-inline-icon-fan" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" class="tx-icon-svg">
+                    <circle cx="16" cy="16" r="3" fill="currentColor" />
+                    <path d="M16 4c3 0 5 1 5 3.5 0 1.4-0.8 2.5-1.8 3.2L16 14" fill="none" stroke="currentColor" stroke-width="1.3" />
+                    <path d="M25 18c-1.5 2.6-3.3 3.7-5.5 3.1-1.4-0.4-2.3-1.4-2.8-2.6L16 14" fill="none" stroke="currentColor" stroke-width="1.3" />
+                    <path d="M9 24c-0.5-3 0.1-4.9 2.2-5.9 1.3-0.6 2.7-0.4 3.8 0.2L16 14" fill="none" stroke="currentColor" stroke-width="1.3" />
+                  </svg>
+                </span>
+                Universal fit for most .223 / .308 platforms
+              </li>
+              <li>
+                <span class="tx-inline-icon tx-inline-icon-battery" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" class="tx-icon-svg">
+                    <rect x="6" y="10" width="17" height="12" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.3" />
+                    <rect x="23" y="13" width="3" height="6" rx="1" ry="1" fill="none" stroke="currentColor" stroke-width="1.3" />
+                    <rect x="8" y="12" width="5" height="8" fill="currentColor" />
+                  </svg>
+                </span>
+                USB‑C rechargeable power pack
+              </li>
+              <li>Low-signature, high-CFM turbine</li>
+            </ul>
+            <form class="tx-purchase-form" id="buy">
+              <label class="tx-field">
+                <span>Choose Color</span>
+                <select name="color" required>
+                  <option value="orange" selected>Thermal Orange</option>
+                  <option value="red">Tracer Red</option>
+                </select>
+              </label>
+              <label class="tx-field">
+                <span>Quantity</span>
+                <div class="tx-qty-wrapper">
+                  <button type="button" class="qty-btn" data-action="dec">-</button>
+                  <input type="number" name="qty" value="1" min="1" max="5" />
+                  <button type="button" class="qty-btn" data-action="inc">+</button>
+                </div>
+              </label>
+              <button type="submit" class="tx-btn-primary tx-btn-full">Add to Cart</button>
+              <p class="tx-secure">Secure checkout · No subscriptions · No BS</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tx-section tx-grid" id="features">
+      <div class="tx-container">
+        <header class="tx-section-header">
+          <h2>Built For Hard Use, Not Glass Cases</h2>
+          <p>Every detail of ThermoX is tuned for shooters who burn ammo, not time.</p>
+        </header>
+        <div class="tx-feature-grid">
+          <article class="tx-feature">
+            <h3>Rapid Barrel Recovery</h3>
+            <p>
+              Directional airflow pushes cool air straight down the bore, stripping heat soak and stabilizing Point of Impact (POI)
+              faster than passive cooling alone.
+            </p>
+          </article>
+          <article class="tx-feature">
+            <h3>Mission-Ready Form Factor</h3>
+            <p>
+              Compact profile slides into your range bag and charges from any USB‑C pack or wall
+              adapter.
+            </p>
+          </article>
+          <article class="tx-feature">
+            <h3>Quiet, Low-Signature</h3>
+            <p>
+                Smart airflow design keeps the fan quiet, so target impacts stay loud and clear.
+            </p>
+          </article>
+          <article class="tx-feature">
+            <h3>Rugged Housing</h3>
+            <p>
+                Rugged 3D-printed polymer body engineered with reinforced structures, tactile grip surfaces, and sealed electronics for harsh range environments.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tx-section tx-alt" id="how-it-works">
+      <div class="tx-container tx-how-grid">
+        <div>
+          <h2>How ThermoX Cools Your Barrel</h2>
+          <p>
+            ThermoX pulls cool ambient air in through the intake, pushes it through a high‑CFM turbine, and directs
+            that airflow straight into your chamber or down the bore. This speeds up how fast the steel can dump heat.
+          </p>
+          <ol class="tx-steps">
+            <li>Make the rifle safe – clear it, remove the mag, and verify an empty chamber.</li>
+            <li>Seat the ThermoX nozzle at the chamber or muzzle, depending on your setup.</li>
+            <li>Switch it on and let active airflow do the cooling while you focus on your next shots.</li>
+          </ol>
+          <p class="tx-note">Works with most modern AR and precision rifle platforms that have a clear path to the chamber or bore.</p>
+        </div>
+        <div class="tx-how-card">
+          <div class="tx-how-diagram-simple">
+            <div class="tx-how-row">
+              <span class="tx-how-tag">AIR IN</span>
+              <span class="tx-how-arrow">➡</span>
+              <span class="tx-how-tag">THERMOX FAN</span>
+              <span class="tx-how-arrow">➡</span>
+              <span class="tx-how-tag">BARREL / CHAMBER</span>
+            </div>
+            <p class="tx-how-caption">Cool air is pulled in, driven by the fan, and pushed directly into the barrel to strip heat.</p>
+          </div>
+            <br>
+          <ul class="tx-how-list">
+            <li>High airflow level: max cooling</li>
+            <li>USB‑C rechargeable power pack</li>
+            <li>Low-signature, high-CFM turbine</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="tx-section" id="specs">
+      <div class="tx-container">
+        <header class="tx-section-header tx-section-header-specs">
+          <span class="tx-stamp-tag">CLASSIFIED DATA // THERMOX-01</span>
+          <h2>Specs That Matter On The Firing Line</h2>
+        </header>
+        <div class="tx-spec-grid">
+          <div class="tx-spec-block">
+            <h3>Performance</h3>
+            <ul>
+              <li>Typical cooldown: 50–60% faster vs. ambient</li>
+              <li>Airflow: up to 12 CFM directed down the bore</li>
+              <li>Noise: sub‑40 dB at 1 meter</li>
+            </ul>
+          </div>
+          <div class="tx-spec-block">
+            <h3>Power</h3>
+            <ul>
+              <li>USB‑C input, 5V</li>
+              <li>Runtime: up to 3 hours on 3,000 mAh pack</li>
+              <li>Draw: 0.6–0.8 A</li>
+            </ul>
+          </div>
+          <div class="tx-spec-block">
+            <h3>Fit & Compatibility</h3>
+            <ul>
+              <li>Optimized for .223 / 5.56 and .308 / 6.5 CM up to .338</li>
+              <li>Adapters available for common calibers</li>
+              <li>Works with most AR (.308), chassis, and precision rigs</li>
+            </ul>
+          </div>
+          <div class="tx-spec-block">
+            <h3>Construction</h3>
+            <ul>
+              <li>Impact‑resistant polymer housing</li>
+              <li>Reinforced intake grill</li>
+              <li>Non‑marring bore interface</li>
+            </ul>
+          </div>
+        </div>
+          <div class="tx-chart-frame">
+            <img class="tx-chart-img" src="assets/cooling-curves.jpeg" alt="ThermoX cooling curves chart" loading="lazy" />
+          </div>
+      </div>
+    </section>
+
+    <section class="tx-section tx-alt" id="reviews">
+      <div class="tx-container">
+        <header class="tx-section-header">
+          <h2>What Shooters Are Saying</h2>
+          <p>Real feedback from the line.</p>
+        </header>
+        <div class="tx-review-grid">
+          <article class="tx-review">
+            <p class="quote">
+              “Barrel temps drop fast enough that I’m not killing time between groups anymore. My data is way more
+              consistent.”
+            </p>
+            <p class="author">— Precision Rifle Shooter</p>
+          </article>
+          <article class="tx-review">
+            <p class="quote">
+              “Perfect for training days. Keeps my duty rifle from cooking while I’m running students through drills.”
+            </p>
+            <p class="author">— Firearms Instructor</p>
+          </article>
+          <article class="tx-review">
+            <p class="quote">
+              “Small, tough, and actually useful. Lives in my range bag now.”
+            </p>
+            <p class="author">— Competitive 3‑Gun Shooter</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tx-section" id="faq">
+      <div class="tx-container">
+        <header class="tx-section-header">
+          <h2>Frequently Asked Questions</h2>
+        </header>
+        <div class="tx-faq-list">
+          <details open>
+            <summary>Is ThermoX safe for my barrel?</summary>
+            <p>
+              Yes. ThermoX uses ambient air with controlled flow rates. There are no chemicals, no contact with rifling,
+              and no extreme temperature swings.
+            </p>
+          </details>
+          <details>
+            <summary>Will it fit my rifle?</summary>
+            <p>
+              ThermoX is optimized for modern rifles in .223 / 5.56 and .308 / 6.5 / .338 class calibers. Adapters can be used
+              for other popular calibers.
+            </p>
+          </details>
+          <details>
+            <summary>Can I use it indoors?</summary>
+            <p>
+              Yes. It’s designed to be quiet and low‑profile, perfect for indoor ranges or training spaces.
+            </p>
+          </details>
+          <details>
+            <summary>What’s the warranty?</summary>
+            <p>
+              We stand behind ThermoX with a 3-month limited warranty and lifetime support.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="tx-section tx-video-section" id="promo-video">
+      <div class="tx-container tx-video-inner">
+        <header class="tx-section-header tx-video-header">
+          <h2>See ThermoX Work Under Heat</h2>
+          <p>Real strings. Real mirage. See how fast ThermoX gets you back on target.</p>
+        </header>
+        <div class="tx-video-frame">
+          <video controls preload="metadata">
+            <source src="assets/ThermoX_promotion.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <footer class="tx-footer">
+      <div class="tx-container tx-footer-inner">
+        <div>
+          <div class="tx-logo">Thermo<span>X</span></div>
+          <p class="tx-footer-tagline">Rifle barrel cooling for serious shooters.</p>
+        </div>
+        <div class="tx-footer-meta">
+          <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
+          <span>Contact: <a href="mailto:thermox.service@gmail.com" class="tx-footer-link">thermox.service@gmail.com</a></span>
+          <span>
+            <a href="terms.html" class="tx-footer-link">Terms &amp; Conditions</a>
+            ·
+            <a href="privacy.html" class="tx-footer-link">Privacy Policy</a>
+            ·
+            <a href="returns-shipping.html" class="tx-footer-link">Returns &amp; Shipping</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

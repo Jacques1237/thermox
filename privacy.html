@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermoX // Privacy Policy</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="tx-header">
+    <div class="tx-container tx-header-inner">
+      <div class="tx-logo">Thermo<span>X</span></div>
+      <nav class="tx-nav">
+        <a href="index.html#top">Back to Product</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tx-container" style="padding-top:2.5rem;padding-bottom:3rem;max-width:800px;">
+    <section class="tx-section" style="padding-top:0;">
+      <header class="tx-section-header" style="margin-bottom:1.5rem;">
+        <h2>Privacy Policy</h2>
+        <p>How data entered into this ThermoX demo is handled.</p>
+      </header>
+      <article class="tx-legal-copy">
+        <h3>1. Demo-Only Data Handling</h3>
+        <p>
+          This ThermoX site runs as a front-end demo. Information you enter into forms (name, email, address, etc.) is
+          only stored locally in your browser using localStorage so that the checkout and order confirmation screens
+          can be demonstrated.
+        </p>
+
+        <h3>2. No Server-Side Storage</h3>
+        <p>
+          In this demo configuration, no personal data is sent to, or stored on, a remote server. Closing your browser
+          or clearing your browser storage will remove the demo order data saved on your device.
+        </p>
+
+        <h3>3. Cookies and Tracking</h3>
+        <p>
+          This prototype does not intentionally use cookies or third-party tracking scripts. When the store goes live,
+          an updated Privacy Policy will describe any analytics or tracking tools in use.
+        </p>
+
+        <h3>4. Future Live Store</h3>
+        <p>
+          When ThermoX goes live as a real online store, this policy will be updated to explain what data is
+          collected, how it is used, and how long it is retained, as well as your rights under applicable privacy
+          laws.
+        </p>
+
+        <h3>5. Contact</h3>
+        <p>
+          For questions about how this demo handles data, you can reach the project maintainer at
+          <a href="mailto:support@example.com" class="tx-footer-link">support@example.com</a>.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="tx-footer">
+    <div class="tx-container tx-footer-inner">
+      <div class="tx-logo">Thermo<span>X</span></div>
+      <div class="tx-footer-meta">
+        <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
+
