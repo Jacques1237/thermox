@@ -1089,17 +1089,27 @@ a {
 }
 
 @media (max-width: 640px) {
+  .tx-header {
+    min-height: 64px; /* ensure a taller bar on small screens */
+  }
+
+  .tx-logo {
+      text-align: center;
+      align-items: center;
+      margin: 20px 0;
+  }
+
   .tx-header-inner {
-    padding: 0.9rem 0; /* slightly taller header on mobile */
+    padding: 1.2rem 0; /* increase vertical padding for more height */
   }
 
   /* Ensure nav items have comfortable tap height in the mobile dropdown */
   .tx-nav.tx-nav-open a {
-    padding: 0.5rem 0; /* add vertical padding per link */
+    padding: 0.6rem 0;
   }
 
   .tx-nav {
-    row-gap: 0.4rem; /* extra space between rows if they wrap */
+    row-gap: 0.5rem;
   }
 
   .tx-container {
