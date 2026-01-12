@@ -246,6 +246,51 @@
             <img class="tx-chart-img" src="assets/cooling-curves.jpeg" alt="ThermoX cooling curves chart" loading="lazy" />
           </div>
       </div>
+        <br><br><br>
+        <div class="tx-container">
+            <header class="tx-section-header tx-section-header-specs">
+                <h2>3D ThermoX model</h2>
+            </header>
+        </div>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.33/build/spline-viewer.js"></script>
+
+        <style>
+            /* 🔧 CONTROL SIZING HERE */
+            spline-viewer {
+                width: 90%;
+                max-width: 900px;
+                aspect-ratio: 16 / 9;
+                margin: auto;
+                display: block;
+            }
+
+            /* Force the internal canvas to obey the viewer size */
+            spline-viewer canvas {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        </style>
+
+        <spline-viewer
+                loading-anim-type="spinner-small-dark"
+                url="https://prod.spline.design/nI13InxkZsY5tBrJ/scene.splinecode">
+        </spline-viewer>
+
+        <script>
+            const removeSplineLogo = () => {
+                const viewer = document.querySelector('spline-viewer');
+                if (!viewer || !viewer.shadowRoot) return;
+
+                const logo = viewer.shadowRoot.querySelector('a[href*="spline.design"]');
+                if (logo) logo.remove();
+            };
+
+            window.addEventListener('load', () => {
+                setInterval(removeSplineLogo, 100);
+            });
+        </script>
+
+
     </section>
 
     <section class="tx-section tx-alt" id="reviews">
