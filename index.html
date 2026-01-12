@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ThermoX Barrel Cooler | Tactical Rifle Barrel Cooling System</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Spline web component definition loaded early so custom element is ready on first render -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.33/build/spline-viewer.js"></script>
 </head>
 <body>
   <header class="tx-header">
@@ -252,44 +254,46 @@
                 <h2>3D ThermoX model</h2>
             </header>
         </div>
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.33/build/spline-viewer.js"></script>
+        <!-- Wrapper gives the viewer a stable layout area so it initializes correctly on first load -->
+        <div class="tx-spline-wrapper">
+          <spline-viewer
+                  loading-anim-type="spinner-small-dark"
+                  url="https://prod.spline.design/nI13InxkZsY5tBrJ/scene.splinecode">
+          </spline-viewer>
+        </div>
 
         <style>
             /* 🔧 CONTROL SIZING HERE */
-            spline-viewer {
+            .tx-spline-wrapper {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto 2rem auto;
+            }
+
+            .tx-spline-wrapper spline-viewer {
                 width: 90%;
                 max-width: 900px;
                 aspect-ratio: 16 / 9;
-                margin: auto;
                 display: block;
             }
 
             /* Force the internal canvas to obey the viewer size */
-            spline-viewer canvas {
+            .tx-spline-wrapper spline-viewer canvas {
                 width: 100% !important;
                 height: 100% !important;
             }
         </style>
 
-        <spline-viewer
-                loading-anim-type="spinner-small-dark"
-                url="https://prod.spline.design/nI13InxkZsY5tBrJ/scene.splinecode">
-        </spline-viewer>
+        <!--
+          Note: Avoid programmatically removing or hiding the Spline logo inside the viewer's shadow DOM.
+          That logo is part of Spline's branding/terms for the free embedded viewer and
+          removing it via script may violate their licensing/ToS and can break on viewer updates.
 
-        <script>
-            const removeSplineLogo = () => {
-                const viewer = document.querySelector('spline-viewer');
-                if (!viewer || !viewer.shadowRoot) return;
-
-                const logo = viewer.shadowRoot.querySelector('a[href*="spline.design"]');
-                if (logo) logo.remove();
-            };
-
-            window.addEventListener('load', () => {
-                setInterval(removeSplineLogo, 100);
-            });
-        </script>
-
+          If you need a logo-free experience, check Spline's paid/white-label options or
+          design your layout so the existing logo feels intentional.
+        -->
 
     </section>
 
@@ -396,5 +400,59 @@
   </main>
 
   <script src="script.js"></script>
+
+  <!-- Spline init helper: ensures the viewer is properly initialized on first load -->
+  <script>
+    (function () {
+      const SPLINE_SELECTOR = '.tx-spline-wrapper spline-viewer';
+      const SPLINE_URL = 'https://prod.spline.design/nI13InxkZsY5tBrJ/scene.splinecode';
+
+      function ensureSplineViewerReady() {
+        const host = document.querySelector('.tx-spline-wrapper');
+        if (!host) return;
+
+        let viewer = host.querySelector('spline-viewer');
+        if (!viewer) {
+          viewer = document.createElement('spline-viewer');
+          viewer.setAttribute('loading-anim-type', 'spinner-small-dark');
+          host.appendChild(viewer);
+        }
+
+        // If URL isn't set for some reason, set it now to trigger load
+        const currentUrl = viewer.getAttribute('url');
+        if (currentUrl !== SPLINE_URL) {
+          viewer.setAttribute('url', SPLINE_URL);
+        }
+      }
+
+      function initWhenReady() {
+        if (window.customElements && window.customElements.get('spline-viewer')) {
+          ensureSplineViewerReady();
+          return;
+        }
+
+        // Poll a few times for the custom element definition in case the module loads slowly
+        let attempts = 0;
+        const maxAttempts = 40; // ~4s at 100ms
+        const interval = setInterval(function () {
+          attempts++;
+          if (window.customElements && window.customElements.get('spline-viewer')) {
+            clearInterval(interval);
+            ensureSplineViewerReady();
+          } else if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            // At this point, the script likely failed to load; nothing else we can do.
+          }
+        }, 100);
+      }
+
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        // Run soon after current call stack if DOM is already ready
+        setTimeout(initWhenReady, 0);
+      } else {
+        window.addEventListener('DOMContentLoaded', initWhenReady);
+      }
+    })();
+  </script>
 </body>
 </html>
