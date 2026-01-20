@@ -5,11 +5,11 @@
 }
 
 :root {
-  --bg: #050709;
+  --bg: #ffffff;
   --bg-alt: #09090b;
   --card: #111827;
   --accent: #f97316; /* primary orange */
-  --accent-soft: rgba(248, 113, 113, 0.16); /* soft red/orange */
+  --accent-soft: rgba(248, 113, 113, 0); /* soft red/orange */
   --accent-strong: rgba(248, 113, 113, 0.5);
   --accent-warm: #facc15; /* ammo yellow */
   --text: #e5e7eb;
@@ -1555,3 +1555,87 @@ a {
     border-radius: 12px;
   }
 }
+
+/* Modal for ordering paused notice */
+#orderPausedModal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 9, 0.85); /* match --bg with opacity */
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+#orderPausedModal .tx-modal-box {
+  background: var(--card);
+  color: var(--text);
+  max-width: 92vw;
+  width: 410px;
+  padding: 2.2rem 1.7rem 1.7rem 1.7rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  position: relative;
+  border: 1.5px solid var(--border);
+  outline: 2px solid var(--accent-strong);
+  outline-offset: -4px;
+  animation: tx-modal-in 0.35s cubic-bezier(.6,-0.28,.74,.05);
+}
+
+@keyframes tx-modal-in {
+  0% { transform: scale(0.92) translateY(30px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+#orderPausedModal .tx-modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#orderPausedModal .tx-modal-close:hover {
+  color: var(--accent);
+}
+
+#orderPausedModal h2 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+#orderPausedModal p {
+  font-size: 1.08rem;
+  margin-bottom: 1.1rem;
+  color: var(--text);
+}
+#orderPausedModal a {
+  color: var(--accent);
+  text-decoration: underline;
+  word-break: break-all;
+}
+#orderPausedModal a:hover {
+  color: var(--accent-warm);
+}
+#orderPausedModal .tx-modal-note {
+  font-size: 0.97rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+}
+@media (max-width: 500px) {
+  #orderPausedModal .tx-modal-box {
+    width: 98vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+}
+

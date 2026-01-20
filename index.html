@@ -118,7 +118,13 @@
                 </div>
               </label>
               <button type="submit" class="tx-btn-primary tx-btn-full tx-btn-disabled" disabled>Ordering Paused</button>
-              <p class="tx-secure">Online ordering is coming soon. To reserve a unit, email <a href="mailto:thermox.service@gmail.com" class="tx-footer-link">thermox.service@gmail.com</a>.</p>
+              <p class="tx-secure" style="background: var(--accent-soft); border: 2px solid var(--accent); border-radius: var(--radius-md); padding: 1.1em 1em 1em 1em; margin-top: 1.1em; margin-bottom: 0.7em; color: var(--bg); font-size: 1.13em; font-weight: 600; text-align: center; box-shadow: 0 4px 32px rgba(249,115,22,0.13);">
+                <span style="color: var(--accent); font-size: 1.18em; font-weight: 800; letter-spacing: 0.02em;">Online ordering is coming soon.</span><br>
+                <span style="color: var(--bg); font-weight: 700;">To reserve a unit:</span><br>
+                  Email <a href="mailto:thermox.service@gmail.com" class="tx-footer-link" rel="noopener noreferrer" style="color: var(--accent); font-weight: 800; text-decoration: underline; font-size: 1.08em;">thermox.service@gmail.com</a>
+                <span style="color: var(--muted); font-size: 1.1em; font-weight: 700; margin: 0 0.5em;">or</span>
+                <a href="https://wa.me/27726731981" class="tx-footer-link" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 800; text-decoration: underline; font-size: 1.08em;">WhatsApp</a>
+              </p>
             </form>
           </div>
         </div>
@@ -386,7 +392,7 @@
         </div>
         <div class="tx-footer-meta">
           <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
-          <span>Contact: <a href="mailto:thermox.service@gmail.com" class="tx-footer-link" target="_blank" rel="noopener noreferrer">thermox.service@gmail.com</a></span>
+          <span>Contact: <a href="mailto:thermox.service@gmail.com" class="tx-footer-link" rel="noopener noreferrer">thermox.service@gmail.com</a></span>
           <span>
             <a href="terms.html" class="tx-footer-link">Terms &amp; Conditions</a>
             ·
@@ -399,7 +405,36 @@
     </footer>
   </main>
 
+  <!-- Popup Modal for Ordering Paused Notice -->
+  <div id="orderPausedModal">
+    <div class="tx-modal-box">
+      <button id="closeOrderPausedModal" class="tx-modal-close" aria-label="Close popup">&times;</button>
+      <h2>Online Ordering Paused</h2>
+        <br>
+      <p style="line-height:1.7; margin-bottom:1.2rem;">You don't have to worry! Online ordering is currently paused, but you can still order <span class="tx-logo" style="display:inline;font-size:inherit;font-weight:800;vertical-align:baseline;">Thermo<span>X</span></span> by emailing <a href="mailto:thermox.service@gmail.com" rel="noopener noreferrer">thermox.service@gmail.com</a> or messaging us on <a href="https://wa.me/27726731981" target="_blank" rel="noopener">WhatsApp</a>.</p>
+      <div class="tx-modal-note" style="margin-top:1.1rem; line-height:1.6;">Thank you for your interest and support!</div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+
+  <script>
+    // Show the ordering paused popup on first page load
+    window.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('orderPausedModal');
+      var closeBtn = document.getElementById('closeOrderPausedModal');
+      if (modal && closeBtn) {
+        modal.style.display = 'flex';
+        closeBtn.onclick = function() {
+          modal.style.display = 'none';
+        };
+        // Optional: close modal when clicking outside the box
+        modal.onclick = function(e) {
+          if (e.target === modal) modal.style.display = 'none';
+        };
+      }
+    });
+  </script>
 
   <!-- Spline init helper: ensures the viewer is properly initialized on first load -->
   <script>
