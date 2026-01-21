@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://thermo-x.co.za/sitemap.xml
