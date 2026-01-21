@@ -1639,3 +1639,28 @@ a {
   }
 }
 
+/* Popup styling improvements for mobile */
+@media (max-width: 600px) {
+  .custom-popup {
+    font-size: 0.95rem;
+    padding: 1.2em 0.8em;
+    line-height: 1.5;
+    max-width: 90vw;
+  }
+  .custom-popup .popup-title {
+    font-size: 1.1rem;
+  }
+  .custom-popup .popup-logo {
+    width: 90px;
+    height: auto;
+    margin-bottom: 0.7em;
+  }
+  .custom-popup .popup-actions {
+    flex-direction: column;
+    gap: 0.7em;
+  }
+  .custom-popup .popup-action {
+    font-size: 0.95rem;
+    padding: 0.7em 1em;
+  }
+}
