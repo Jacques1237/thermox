@@ -465,7 +465,39 @@
     </footer>
   </main>
 
+  <!-- Reused popup modal with updated live-ordering message -->
+  <div id="orderPausedModal">
+    <div class="tx-modal-box">
+      <button id="closeOrderPausedModal" class="tx-modal-close" aria-label="Close popup">&times;</button>
+      <h2>Online Ordering Is Live</h2>
+      <p style="line-height:1.7; margin-bottom:1.2rem;">
+        Secure ThermoX online ordering is now available.
+        Click <a href="#buy" rel="noopener">Order Now</a> to start your order, or contact us at
+        <a href="mailto:thermox.service@gmail.com" rel="noopener noreferrer">thermox.service@gmail.com</a>
+        or <a href="https://wa.me/27726731981" target="_blank" rel="noopener">WhatsApp</a>.
+      </p>
+      <div class="tx-modal-note" style="margin-top:1.1rem; line-height:1.6;">Thank you for your support.</div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+
+  <script>
+    // Reused popup behavior: show on load and allow close/click-outside close.
+    window.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('orderPausedModal');
+      var closeBtn = document.getElementById('closeOrderPausedModal');
+      if (modal && closeBtn) {
+        modal.style.display = 'flex';
+        closeBtn.onclick = function() {
+          modal.style.display = 'none';
+        };
+        modal.onclick = function(e) {
+          if (e.target === modal) modal.style.display = 'none';
+        };
+      }
+    });
+  </script>
 
   <!-- Spline init helper: ensures the viewer is properly initialized on first load -->
   <script>
