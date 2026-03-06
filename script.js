@@ -25,8 +25,56 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Simple client-side cart ---
   const STORAGE_KEY = "thermox_cart";
   const MAX_QTY = 5;
-  const ORDERING_ENABLED = false;
+  const ORDERING_ENABLED = true;
+  const DEFAULT_PAYMENT_LINK = "https://ikwebstore.co.za/triforma";
+  // Paste your dedicated iKhokha links per color/qty here. Empty values fall back to DEFAULT_PAYMENT_LINK.
+  const PAYMENT_LINKS_BY_VARIANT = {
+    orange: {
+      1: "",
+      2: "",
+      3: "",
+      4: "",
+      5: "",
+    },
+    red: {
+      1: "",
+      2: "",
+      3: "",
+      4: "",
+      5: "",
+    },
+  };
   let cart = [];
+
+  function buildPaymentUrl(baseLink, params) {
+    const url = new URL(baseLink);
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== "") {
+        url.searchParams.set(key, String(value));
+      }
+    });
+    return url.toString();
+  }
+
+  function getReturnUrls() {
+    const successUrl = `${window.location.origin}/success.html`;
+    const cancelUrl = `${window.location.origin}/checkout.html`;
+    return { successUrl, cancelUrl };
+  }
+
+  function getColorKey(color) {
+    const normalized = (color || "").toString().toLowerCase();
+    if (normalized.includes("orange")) return "orange";
+    if (normalized.includes("red")) return "red";
+    return "other";
+  }
+
+  function getVariantPaymentLink(colorKey, qty) {
+    const byQty = PAYMENT_LINKS_BY_VARIANT[colorKey];
+    if (!byQty) return "";
+    const candidate = byQty[qty];
+    return typeof candidate === "string" ? candidate.trim() : "";
+  }
 
   function loadCart() {
     try {
@@ -67,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function addToCart(item) {
     if (!ORDERING_ENABLED) {
-      showToast("Online ordering is coming soon. Email thermox.service@gmail.com to reserve.");
+      showToast("Online ordering is currently unavailable. Please try again soon.");
       return;
     }
     const existing = cart.find((entry) => entry.color === item.color);
@@ -80,9 +128,42 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartBadge();
   }
 
+  function openPaymentForSelection(color, qty) {
+    const normalizedColor = (color || "Thermal Orange").toString();
+    const parsedQty = Math.max(1, Math.min(MAX_QTY, parseInt(qty, 10) || 1));
+    const colorKey = getColorKey(normalizedColor);
+    const variantLink = getVariantPaymentLink(colorKey, parsedQty);
+    const selectedBaseLink = variantLink || DEFAULT_PAYMENT_LINK;
+    const { successUrl, cancelUrl } = getReturnUrls();
+
+    const summary = {
+      items: [{ color: normalizedColor, qty: parsedQty }],
+      total: parsedQty * 800,
+      timestamp: Date.now(),
+      customer: {},
+    };
+
+    try {
+      localStorage.setItem('thermoxLastOrder', JSON.stringify(summary));
+    } catch (e) {}
+
+    const paymentUrl = buildPaymentUrl(selectedBaseLink, {
+      item: "ThermoX Barrel Cooler",
+      color: normalizedColor,
+      qty: parsedQty,
+      orange_qty: normalizedColor.toLowerCase().includes("orange") ? parsedQty : 0,
+      red_qty: normalizedColor.toLowerCase().includes("red") ? parsedQty : 0,
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      return_url: successUrl,
+    });
+
+    window.location.href = paymentUrl;
+  }
+
   function openCartDropdown(anchor) {
     if (!ORDERING_ENABLED) {
-      showToast("Online ordering is paused. Cart will go live soon.");
+      showToast("Online ordering is currently unavailable. Please try again soon.");
       return;
     }
     // Close any existing dropdown
@@ -187,31 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  function ensureCartButton() {
-    const headerInner = document.querySelector(".tx-header .tx-container.tx-header-inner");
-    if (!headerInner || document.getElementById("thermox-cart-btn")) return;
-
-    const cartBtn = document.createElement("button");
-    cartBtn.id = "thermox-cart-btn";
-    cartBtn.type = "button";
-    cartBtn.className = "tx-btn-ghost tx-cart-btn";
-    cartBtn.innerHTML = 'Cart&nbsp;<span id="thermox-cart-count">0</span>';
-    cartBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openCartDropdown(cartBtn);
-    });
-
-    const buyNow = headerInner.querySelector(".tx-cta");
-    if (buyNow) {
-      headerInner.insertBefore(cartBtn, buyNow);
-    } else {
-      headerInner.appendChild(cartBtn);
-    }
-  }
-
   loadCart();
-  ensureCartButton();
   updateCartBadge();
 
   const form = document.getElementById("buy");
@@ -219,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!ORDERING_ENABLED) {
-        showToast("Ordering is paused. Email thermox.service@gmail.com to get on the deployment list.");
+        showToast("Online ordering is currently unavailable. Please try again soon.");
         return;
       }
       const data = new FormData(form);
@@ -229,9 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (qty > MAX_QTY) qty = MAX_QTY;
 
       addToCart({ color, qty });
-      showToast(`Added ${qty} × ThermoX (${color}) to cart`);
+      showToast(`Redirecting to payment for ${qty} × ThermoX (${color})`);
 
       if (qtyInput) qtyInput.value = "1";
+
+      setTimeout(() => {
+        openPaymentForSelection(color, qty);
+      }, 250);
     });
   }
 

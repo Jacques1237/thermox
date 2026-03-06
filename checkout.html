@@ -20,9 +20,9 @@
     <main class="tx-checkout-main tx-container">
       <section class="tx-section tx-checkout-section">
         <header class="tx-section-header tx-checkout-header-friendly">
-          <h1>Online Ordering Not Live Yet</h1>
-          <p>This is a demo checkout screen to show how ThermoX orders will look once we deploy full e‑commerce.</p>
-          <p class="tx-checkout-subcopy">No real payments or shipments are processed from this page. For now, use it as a preview only.</p>
+          <h1>ThermoX Checkout</h1>
+          <p>Review your order details and continue to secure payment with iKhokha.</p>
+          <p class="tx-checkout-subcopy">Your selected color and quantity are included with your payment redirect.</p>
         </header>
 
         <div id="checkout-cart" class="tx-checkout-cart"></div>
@@ -55,22 +55,22 @@
               <input type="text" id="checkout-region" autocomplete="address-level1" placeholder="Province / State" />
             </label>
           </div>
-          <p class="tx-checkout-note-small">Demo only: details stay in your browser so you can see what a full order record would look like. No data is sent to a server.</p>
+          <p class="tx-checkout-note-small">Details entered here are used only for your local order summary before you proceed to iKhokha payment.</p>
         </section>
 
         <section class="tx-checkout-meta-section" aria-label="Pricing and terms">
-          <p class="tx-checkout-note">Pricing demo: R800 per unit. When we go live, final pricing, tax, and shipping will be confirmed here.</p>
+          <p class="tx-checkout-note">Pricing is finalized on the iKhokha side based on your configured payment product.</p>
           <label class="tx-checkout-consent">
             <input type="checkbox" id="checkout-consent" />
-            <span>I understand this is a demo checkout and agree to the example Terms &amp; Privacy placeholders.</span>
+            <span>I confirm my order details before proceeding to payment.</span>
           </label>
         </section>
 
         <div class="tx-checkout-actions tx-checkout-actions-spaced">
           <a href="index.html#top" class="tx-btn-ghost">⟵ Continue Browsing</a>
-          <button type="button" class="tx-btn-primary tx-btn-disabled" id="checkout-pay-btn" aria-disabled="true">Ordering Paused</button>
+          <button type="button" class="tx-btn-primary" id="checkout-pay-btn">Pay with iKhokha</button>
         </div>
-        <p class="tx-secure tx-checkout-note">ThermoX online checkout is coming soon. To get on the first deployment list, <a href="mailto:thermox.service@gmail.com" class="tx-footer-link" rel="noopener noreferrer">email thermox.service@gmail.com</a>.</p>
+        <p class="tx-secure tx-checkout-note">Secure payment is handled by iKhokha. For support, <a href="mailto:thermox.service@gmail.com" class="tx-footer-link" rel="noopener noreferrer">email thermox.service@gmail.com</a>.</p>
       </section>
     </main>
 

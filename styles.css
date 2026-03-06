@@ -921,6 +921,43 @@ a {
   border-top: 1px solid rgba(31, 41, 55, 0.9);
 }
 
+.tx-gallery-page {
+  min-height: calc(100vh - 160px);
+  padding-top: 2.5rem;
+}
+
+.tx-gallery-page h1 {
+  font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tx-gallery-grid-page {
+  margin-top: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.tx-gallery-grid-page .tx-gallery-item img {
+  height: min(360px, 34vw);
+  background: #020617;
+}
+
+.tx-gallery-note {
+  margin-top: 1.2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.tx-gallery-note code {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .tx-gallery-grid-page .tx-gallery-item img {
+    height: 240px;
+  }
+}
+
 /* Promo video section - tactical "range footage" slab */
 .tx-video-section {
   position: relative;

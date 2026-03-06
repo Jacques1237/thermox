@@ -1,7 +1,91 @@
 (function () {
-  const ORDERING_ENABLED = false;
+  const ORDERING_ENABLED = true;
   const STORAGE_KEY = 'thermox_cart';
   const PRICE_PER_UNIT = 800; // R800
+  const DEFAULT_PAYMENT_LINK = 'https://ikwebstore.co.za/triforma';
+  // Paste your dedicated iKhokha links per color/qty here. Empty values fall back to DEFAULT_PAYMENT_LINK.
+  const PAYMENT_LINKS_BY_VARIANT = {
+    orange: {
+      1: '',
+      2: '',
+      3: '',
+      4: '',
+      5: '',
+    },
+    red: {
+      1: '',
+      2: '',
+      3: '',
+      4: '',
+      5: '',
+    },
+  };
+
+  function buildPaymentUrl(baseLink, params) {
+    const url = new URL(baseLink);
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        url.searchParams.set(key, String(value));
+      }
+    });
+    return url.toString();
+  }
+
+  function getReturnUrls() {
+    const successUrl = `${window.location.origin}/success.html`;
+    const cancelUrl = `${window.location.origin}/checkout.html`;
+    return { successUrl, cancelUrl };
+  }
+
+  function getColorKey(color) {
+    const normalized = (color || '').toString().toLowerCase();
+    if (normalized.includes('orange')) return 'orange';
+    if (normalized.includes('red')) return 'red';
+    return 'other';
+  }
+
+  function getVariantPaymentLink(colorKey, qty) {
+    const byQty = PAYMENT_LINKS_BY_VARIANT[colorKey];
+    if (!byQty) return '';
+    const candidate = byQty[qty];
+    return typeof candidate === 'string' ? candidate.trim() : '';
+  }
+
+  function getSingleColorCartInfo(cart) {
+    let detectedColorKey = '';
+    let totalQty = 0;
+
+    for (const item of cart) {
+      const qty = Math.max(0, parseInt(item.qty, 10) || 0);
+      if (qty === 0) continue;
+
+      totalQty += qty;
+      const colorKey = getColorKey(item.color);
+
+      if (colorKey === 'other') return null;
+      if (!detectedColorKey) detectedColorKey = colorKey;
+      if (detectedColorKey !== colorKey) return null;
+    }
+
+    if (!detectedColorKey || totalQty < 1) return null;
+    return { colorKey: detectedColorKey, qty: totalQty };
+  }
+
+  function getColorBreakdown(cart) {
+    return cart.reduce(
+      (acc, item) => {
+        const color = (item.color || '').toString().toLowerCase();
+        const qty = Math.max(0, parseInt(item.qty, 10) || 0);
+
+        if (color.includes('orange')) acc.orange += qty;
+        else if (color.includes('red')) acc.red += qty;
+        else acc.other += qty;
+
+        return acc;
+      },
+      { orange: 0, red: 0, other: 0 }
+    );
+  }
 
   function loadCart() {
     try {
@@ -92,7 +176,7 @@
     if (payButton) {
       payButton.addEventListener('click', () => {
         if (!ORDERING_ENABLED) {
-          alert('Online ordering is not live yet. This checkout is a demo only. Email thermox.service@gmail.com to request a ThermoX unit.');
+          alert('Online ordering is currently unavailable. Please try again later.');
           return;
         }
 
@@ -104,7 +188,7 @@
         }
 
         if (!isConsentChecked()) {
-          alert('Please confirm the demo terms before completing this test order.');
+          alert('Please confirm your order details before continuing to payment.');
           return;
         }
 
@@ -126,11 +210,33 @@
           localStorage.setItem('thermoxLastOrder', JSON.stringify(summary));
         } catch (e) {}
 
-        try {
-          localStorage.removeItem(STORAGE_KEY);
-        } catch (e) {}
+        const breakdown = getColorBreakdown(cart);
 
-        window.location.href = 'success.html';
+        const singleColorOrder = getSingleColorCartInfo(cart);
+        let selectedBaseLink = DEFAULT_PAYMENT_LINK;
+
+        if (singleColorOrder && singleColorOrder.qty <= 5) {
+          const variantLink = getVariantPaymentLink(singleColorOrder.colorKey, singleColorOrder.qty);
+          if (variantLink) {
+            selectedBaseLink = variantLink;
+          }
+        }
+
+        const { successUrl, cancelUrl } = getReturnUrls();
+
+        const paymentUrl = buildPaymentUrl(selectedBaseLink, {
+          item: 'ThermoX Barrel Cooler',
+          qty: cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 0), 0),
+          orange_qty: breakdown.orange,
+          red_qty: breakdown.red,
+          other_qty: breakdown.other,
+          notes: `Order total ZAR ${total}`,
+          success_url: successUrl,
+          cancel_url: cancelUrl,
+          return_url: successUrl,
+        });
+
+        window.location.href = paymentUrl;
       });
     }
   });

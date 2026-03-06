@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermoX // Product Gallery</title>
+  <meta name="description" content="Browse ThermoX product photos and real-world range visuals." />
+  <link rel="canonical" href="https://thermo-x.co.za/gallery.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.png" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+</head>
+<body>
+  <header class="tx-header">
+    <div class="tx-container tx-header-inner">
+      <div class="tx-logo">Thermo<span>X</span></div>
+      <button class="tx-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="tx-nav" data-nav>
+        <a href="index.html#top">Home</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#buy">Order</a>
+      </nav>
+      <a class="tx-cta tx-btn-primary" href="index.html#buy">Order Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="tx-section tx-gallery-page" id="gallery-top">
+      <div class="tx-container">
+        <header class="tx-section-header">
+          <h1>ThermoX Product Gallery</h1>
+          <p>Showcase your product photos here. Click any image for a larger view.</p>
+        </header>
+
+        <div class="tx-gallery-grid tx-gallery-grid-page">
+          <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-ro.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+           
+          </figure>
+           <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-ro2.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+            
+          </figure>
+           <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-r.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+            
+          </figure>
+          <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-r2.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+            
+          </figure>
+          <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-r3.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+            
+          </figure>
+            <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-o.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+            
+          </figure>
+          <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-o2.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+          
+          </figure>
+          <figure class="tx-gallery-item">
+            <img src="gallery/Thermox-o3.jpg" alt="ThermoX cooling curve test results" loading="lazy" />
+           
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <footer class="tx-footer">
+      <div class="tx-container tx-footer-inner">
+        <div>
+          <div class="tx-logo">Thermo<span>X</span></div>
+          <p class="tx-footer-tagline">Rifle barrel cooling for serious shooters.</p>
+        </div>
+        <div class="tx-footer-meta">
+          <span>© <span id="year"></span> ThermoX. All rights reserved.</span>
+          <span>Contact: <a href="mailto:thermox.service@gmail.com" class="tx-footer-link" rel="noopener noreferrer">thermox.service@gmail.com</a></span>
+          <span>
+            <a href="index.html" class="tx-footer-link">Product Page</a>
+            ·
+            <a href="terms.html" class="tx-footer-link">Terms &amp; Conditions</a>
+            ·
+            <a href="privacy.html" class="tx-footer-link">Privacy Policy</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      var navToggle = document.querySelector(".tx-nav-toggle");
+      var nav = document.querySelector(".tx-nav[data-nav]");
+      if (navToggle && nav) {
+        navToggle.addEventListener("click", function () {
+          var isOpen = nav.classList.toggle("tx-nav-open");
+          navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+
+        nav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            nav.classList.remove("tx-nav-open");
+            navToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      var galleryImages = document.querySelectorAll(".tx-gallery-item img");
+      galleryImages.forEach(function (img) {
+        img.style.cursor = "zoom-in";
+        img.addEventListener("click", function () {
+          var overlay = document.createElement("div");
+          overlay.className = "tx-lightbox-overlay";
+
+          var fullImg = document.createElement("img");
+          fullImg.src = img.currentSrc || img.src;
+          fullImg.alt = img.alt || "ThermoX gallery image";
+
+          overlay.appendChild(fullImg);
+          document.body.appendChild(overlay);
+
+          overlay.addEventListener("click", function () {
+            overlay.remove();
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
