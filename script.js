@@ -344,6 +344,113 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ----- Scroll reveal -----
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+  // ----- Animated stat counters -----
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const numEl = el.querySelector('.tx-stat-number');
+    if (!numEl || isNaN(target)) return;
+    const duration = 1600;
+    const startTime = performance.now();
+    function step(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(eased * target);
+      numEl.textContent = value.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.tx-stat[data-target]').forEach(el => statsObserver.observe(el));
+
+  // ----- Scroll progress bar -----
+  const progressBar = document.getElementById('tx-progress-bar');
+  if (progressBar) {
+    const updateProgress = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // ----- Back to top -----
+  const backTop = document.getElementById('tx-back-top');
+  if (backTop) {
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 420);
+    }, { passive: true });
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ----- Active nav section tracking -----
+  const navLinks = document.querySelectorAll('.tx-nav a[href^="#"]');
+  const trackedSections = document.querySelectorAll('section[id]');
+  if (navLinks.length && trackedSections.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('tx-nav-active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.35, rootMargin: '-10% 0px -55% 0px' });
+    trackedSections.forEach(s => navObserver.observe(s));
+  }
+
+  // ----- FAQ smooth accordion -----
+  document.querySelectorAll('.tx-faq-list details').forEach(details => {
+    const summary = details.querySelector('summary');
+    const content = details.querySelector('p');
+    if (!summary || !content) return;
+
+    // Set initial state without animation
+    if (details.open) {
+      details.classList.add('faq-open');
+    }
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = details.classList.contains('faq-open');
+      // Close all others
+      document.querySelectorAll('.tx-faq-list details.faq-open').forEach(d => {
+        if (d !== details) {
+          d.classList.remove('faq-open');
+          d.open = false;
+        }
+      });
+      if (isOpen) {
+        details.classList.remove('faq-open');
+        setTimeout(() => { details.open = false; }, 380);
+      } else {
+        details.open = true;
+        requestAnimationFrame(() => details.classList.add('faq-open'));
+      }
+    });
+  });
+
   // Mobile navigation toggle
   const navToggle = document.querySelector('.tx-nav-toggle');
   const nav = document.querySelector('.tx-nav[data-nav]');

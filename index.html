@@ -66,6 +66,9 @@
     ]
   }
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.33/build/spline-viewer.js"></script>
   <!-- Favicon and app icons for best browser and device support -->
@@ -78,6 +81,7 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+  <div id="tx-progress-bar" aria-hidden="true"></div>
   <header class="tx-header">
     <div class="tx-container tx-header-inner">
       <div class="tx-logo">Thermo<span>X</span></div>
@@ -101,6 +105,7 @@
   <main>
     <section class="tx-hero" id="top">
       <div class="tx-hero-overlay"></div>
+      <div class="tx-hero-scan" aria-hidden="true"></div>
       <div class="tx-container tx-hero-content">
         <div class="tx-hero-text">
           <h1>Keep Your Barrel <span>Cold</span>. Stay On Target.</h1>
@@ -145,7 +150,7 @@
               <h2>ThermoX Barrel Cooler</h2>
             </div>
             <p class="tx-price"><span class="tx-price-main">R1265</span> <span class="tx-price-sub">ZAR</span></p>
-            <p class="tx-stock">Online ordering now available</p>
+            <p class="tx-stock"><span class="tx-online-dot" aria-hidden="true"></span>Online ordering now available</p>
             <ul class="tx-mini-features">
               <li>
                 <span class="tx-inline-icon tx-inline-icon-fan" aria-hidden="true">
@@ -187,37 +192,105 @@
 
     <section class="tx-section tx-grid" id="features">
       <div class="tx-container">
-        <header class="tx-section-header">
+        <header class="tx-section-header" data-reveal>
           <h2>Built For Hard Use, Not Glass Cases</h2>
           <p>Every detail of ThermoX is tuned for shooters who burn ammo, not time. <strong>Barrel cooler</strong> technology for the modern range.</p>
         </header>
         <div class="tx-feature-grid">
-          <article class="tx-feature">
+          <article class="tx-feature" data-reveal data-delay="1">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <div class="tx-feature-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 12c2-1.5 3.5-4 2.5-6.5a2.8 2.8 0 00-5 0C8.5 8 10 10.5 12 12z"/>
+                <path d="M12 12c2 1.5 4.5 2 6 .5a2.8 2.8 0 00-2.5-4.8c-2 .5-3.5 2.5-3.5 4.3z"/>
+                <path d="M12 12c-2 1.5-3 4-1.5 6a2.8 2.8 0 004.8-2.5c-.5-2-2.5-3.5-3.3-3.5z"/>
+                <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
             <h3>Rapid Barrel Recovery</h3>
             <p>
               Directional airflow pushes cool air straight down the bore, stripping heat soak and stabilizing Point of Impact (POI)
               faster than passive cooling alone.
             </p>
           </article>
-          <article class="tx-feature">
+          <article class="tx-feature" data-reveal data-delay="2">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <div class="tx-feature-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M8 7V5a4 4 0 018 0v2"/>
+                <line x1="12" y1="12" x2="12" y2="15"/>
+                <line x1="10.5" y1="13.5" x2="13.5" y2="13.5"/>
+              </svg>
+            </div>
             <h3>Mission-Ready Form Factor</h3>
             <p>
               Compact profile slides into your range bag and charges from any USB‑C pack or wall
               adapter.
             </p>
           </article>
-          <article class="tx-feature">
+          <article class="tx-feature" data-reveal data-delay="3">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <div class="tx-feature-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M3 12c2-4 6-4 9 0s7 4 9 0"/>
+                <path d="M3 6c2-3 6-3 9 0s7 3 9 0" opacity="0.4"/>
+                <path d="M3 18c2-4 6-4 9 0s7 4 9 0" opacity="0.4"/>
+              </svg>
+            </div>
             <h3>Quiet, Low-Signature</h3>
             <p>
                 Smart airflow design keeps the fan quiet, so target impacts stay loud and clear.
             </p>
           </article>
-          <article class="tx-feature">
+          <article class="tx-feature" data-reveal data-delay="4">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <div class="tx-feature-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l8 3v5c0 5.5-3.5 10-8 12C7.5 22 4 17.5 4 12V5l8-3z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
             <h3>Rugged Housing</h3>
             <p>
                 Rugged 3D-printed polymer body engineered with reinforced structures, tactile grip surfaces, and sealed electronics for harsh range environments.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tx-stats-strip" aria-label="Key specifications">
+      <div class="tx-container">
+        <div class="tx-stats-grid">
+          <div class="tx-stat" data-target="50" data-suffix="%" data-reveal>
+            <span class="tx-stat-number">50%</span>
+            <span class="tx-stat-label">Faster Cooldown</span>
+          </div>
+          <div class="tx-stat" data-target="17000" data-suffix=" RPM" data-reveal data-delay="1">
+            <span class="tx-stat-number">17,000 RPM</span>
+            <span class="tx-stat-label">Turbine Speed</span>
+          </div>
+          <div class="tx-stat" data-target="50" data-suffix=" CFM" data-reveal data-delay="2">
+            <span class="tx-stat-number">50 CFM</span>
+            <span class="tx-stat-label">Directed Airflow</span>
+          </div>
+          <div class="tx-stat" data-target="2" data-suffix="hr" data-reveal data-delay="3">
+            <span class="tx-stat-number">2hr</span>
+            <span class="tx-stat-label">Battery Runtime</span>
+          </div>
         </div>
       </div>
     </section>
@@ -239,14 +312,26 @@
         </div>
         <div class="tx-how-card">
           <div class="tx-how-diagram-simple">
-            <div class="tx-how-row">
-              <span class="tx-how-tag">AIR IN</span>
-              <span class="tx-how-arrow">➡</span>
-              <span class="tx-how-tag">THERMOX FAN</span>
-              <span class="tx-how-arrow">➡</span>
-              <span class="tx-how-tag">BARREL / CHAMBER</span>
+            <div class="tx-airflow-anim" aria-label="Airflow diagram: air in to fan to barrel">
+              <div class="tx-airflow-node">AIR IN</div>
+              <div class="tx-airflow-pipe">
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+              </div>
+              <div class="tx-airflow-node tx-airflow-node-fan">THERMOX FAN</div>
+              <div class="tx-airflow-pipe tx-airflow-pipe-cold">
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+                <span class="tx-airflow-dash"></span>
+              </div>
+              <div class="tx-airflow-node tx-airflow-node-target">BARREL / CHAMBER</div>
             </div>
-            <p class="tx-how-caption">Cool air is pulled in, driven by the fan, and pushed directly into the barrel to strip heat.</p>
+            <p class="tx-how-caption">Cool air pulled in → driven by turbine → forced down the bore to strip heat.</p>
           </div>
             <br>
           <ul class="tx-how-list">
@@ -266,6 +351,10 @@
         </header>
         <div class="tx-spec-grid">
           <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
             <h3>Performance</h3>
             <ul>
               <li>Typical cooldown: 50–60% faster vs. ambient</li>
@@ -274,6 +363,10 @@
             </ul>
           </div>
           <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
             <h3>Power</h3>
             <ul>
               <li>USB‑C input, 5V</li>
@@ -282,6 +375,10 @@
             </ul>
           </div>
           <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
             <h3>Fit & Compatibility</h3>
             <ul>
               <li>Optimized for .223 / 5.56 and .308 / 6.5 CM up to .338</li>
@@ -290,6 +387,10 @@
             </ul>
           </div>
           <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
             <h3>Construction</h3>
             <ul>
               <li>Impact‑resistant polymer housing</li>
@@ -363,61 +464,76 @@
           <h2>What Shooters Are Saying</h2>
           <p>Real feedback from the line.</p>
         </header>
-        <div class="tx-review-grid">
-          <article class="tx-review">
-            <p class="quote">
+          <div class="tx-spec-grid tx-reviews-grid">
+          <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <p class=”quote”>
               “Barrel temps drop fast enough that I’m not killing time between groups anymore. My data is way more
               consistent.”
             </p>
+            <br>
             <p class="author">— Precision Rifle Shooter</p>
-          </article>
-          <article class="tx-review">
-            <p class="quote">
+          </div>
+          <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <p class=”quote”>
               “Perfect for training days. Keeps my duty rifle from cooking while I’m running students through drills.”
             </p>
+            <br>
             <p class="author">— Firearms Instructor</p>
-          </article>
-          <article class="tx-review">
-            <p class="quote">
+          </div>
+          <div class="tx-spec-block">
+            <span class="tx-card-corner tx-card-corner-tl"></span>
+            <span class="tx-card-corner tx-card-corner-tr"></span>
+            <span class="tx-card-corner tx-card-corner-bl"></span>
+            <span class="tx-card-corner tx-card-corner-br"></span>
+            <p class=”quote”>
               “Small, tough, and actually useful. Lives in my range bag now.”
             </p>
+            <br>
             <p class="author">— Competitive 3‑Gun Shooter</p>
-          </article>
+          </div>
+            <br>
         </div>
-      </div>
     </section>
 
     <section class="tx-section" id="faq">
       <div class="tx-container">
-        <header class="tx-section-header">
+        <header class="tx-section-header" data-reveal>
           <h2>Frequently Asked Questions</h2>
         </header>
         <div class="tx-faq-list">
-          <details open>
+          <details open data-reveal>
             <summary>Is ThermoX a real barrel cooler?</summary>
             <p>
               Yes. ThermoX is a purpose-built <strong>barrel cooler</strong> and <strong>gun barrel fan</strong> for rifles. It rapidly cools your barrel between strings, reducing heat mirage and improving accuracy.
             </p>
           </details>
-          <details>
+          <details data-reveal data-delay="1">
             <summary>What rifles does it fit?</summary>
             <p>
               ThermoX fits most AR-15, AR-10, and bolt-action rifles. It is the best <strong>barrel cooling system</strong> for .223, .308, 6.5 Creedmoor, and more.
             </p>
           </details>
-          <details>
+          <details data-reveal data-delay="2">
             <summary>Why do I need a barrel cooler?</summary>
             <p>
               A <strong>barrel cooler</strong> or <strong>gun barrel fan</strong> helps prevent barrel overheating, mirage, and accuracy loss. ThermoX is trusted by match shooters and hunters for fast, reliable cooling.
             </p>
           </details>
-          <details>
+          <details data-reveal data-delay="3">
             <summary>Can I use it indoors?</summary>
             <p>
               Yes. It’s designed to be quiet and low‑profile, perfect for indoor ranges or training spaces.
             </p>
           </details>
-          <details>
+          <details data-reveal data-delay="4">
             <summary>What’s the warranty?</summary>
             <p>
               We stand behind ThermoX with a 3-month limited warranty and lifetime support.
@@ -479,6 +595,12 @@
       <div class="tx-modal-note" style="margin-top:1.1rem; line-height:1.6;">Thank you for your support.</div>
     </div>
   </div>
+
+  <button id="tx-back-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
 
   <script src="script.js"></script>
 
