@@ -2198,3 +2198,37 @@ h3 { letter-spacing: 0.05em; }
   border-color: var(--accent);
   box-shadow: 0 0 20px rgba(249, 115, 22, 0.35);
 }
+.tx-price {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.tx-price-old {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.95em;
+}
+
+.tx-price-new {
+  color: #f97316; /* nice promo red */
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.tx-price-label {
+  background: #f97316;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.tx-price-sub {
+  font-size: 0.65em;
+  color: #aaa;
+  align-self: flex-end;
+}
